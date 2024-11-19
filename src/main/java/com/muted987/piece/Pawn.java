@@ -3,6 +3,8 @@ package main.java.com.muted987.piece;
 import main.java.com.muted987.Color;
 import main.java.com.muted987.Coordinates;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 
 public class Pawn extends Piece {
@@ -13,6 +15,15 @@ public class Pawn extends Piece {
 
     @Override
     protected Set<CoordinatesShift> getPieceMoves() {
-        return null;
+        if (color == Color.WHITE) {
+            return new HashSet<>(Arrays.asList(
+                    new CoordinatesShift(0, 1)
+            ));
+        }
+        else {
+            return new HashSet<>(Arrays.asList(
+                    new CoordinatesShift(0, -1)
+            ));
+        }
     }
 }
