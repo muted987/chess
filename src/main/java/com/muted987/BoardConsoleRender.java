@@ -20,13 +20,16 @@ public class BoardConsoleRender {
                     line.append(getPieceSprite(board.getPiece(coordinates)));
                 }
             }
-            line.append(ANSI_RESET);
+            line.append(ANSI_RESET + " " + rank);
             System.out.println(line);
+        }
+        for (File file : File.values()) {
+            System.out.print(" " + file + "ㅤ");
         }
     }
 
     private String getPieceSprite(Piece piece) {
-        return colorizeSprite("" + selectUnicodeSpriteForPiece(piece) + " ", piece.color , Board.isSquareDark(piece.coordinates));
+        return colorizeSprite(" " + selectUnicodeSpriteForPiece(piece) + " ", piece.color , Board.isSquareDark(piece.coordinates));
     }
 
     private String colorizeSprite(String sprite, Color pieceColor, boolean isSquareDark) {
@@ -50,13 +53,13 @@ public class BoardConsoleRender {
     }
 
     private String getSpriteForEmptySquare(Coordinates coordinates) {
-        return colorizeSprite("    ", Color.WHITE, Board.isSquareDark(coordinates));
+        return colorizeSprite(" ㅤ ", Color.WHITE, Board.isSquareDark(coordinates));
     }
 
     private String selectUnicodeSpriteForPiece(Piece piece) {
         switch (piece.getClass().getSimpleName()){
             case "Pawn":
-                return "P︎";
+                return "♙";
 
             case "Knight":
                 return "♞";
