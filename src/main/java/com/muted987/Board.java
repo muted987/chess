@@ -10,7 +10,14 @@ public class Board {
         piece.coordinates = coordinates;
         pieces.put(coordinates, piece);
     }
-
+    public void removePiece(Coordinates coordinates) {
+        pieces.remove(coordinates);
+    }
+    public  void movePiece(Coordinates from, Coordinates to) {
+        Piece piece = getPiece(from);
+        removePiece(from);
+        setPiece(to, piece);
+    }
     public void setupDefaultPiecesPositions() {
         //set pawns
         for (File file : File.values()) {
