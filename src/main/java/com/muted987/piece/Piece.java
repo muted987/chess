@@ -5,6 +5,7 @@ import main.java.com.muted987.Color;
 import main.java.com.muted987.Coordinates;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 abstract public class Piece {
@@ -29,7 +30,7 @@ abstract public class Piece {
         return result;
     }
 
-    private boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
+    protected boolean isSquareAvailableForMove(Coordinates coordinates, Board board) {
         return board.isSquareEmpty(coordinates) || board.getPiece(coordinates).color != color;
     }
 
