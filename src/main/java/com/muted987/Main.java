@@ -6,18 +6,17 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        Board board = new Board();
-        board.setupDefaultPiecesPositions();
-//        BoardConsoleRender renderer = new BoardConsoleRender();
-//        renderer.render(board);
-//
+        String boardFen = "4b3/8/8/n3R2p/8/8/8/4N2r w - - 0 1";
+        Board board = (new BoardFactory()).fromFEN(boardFen);
+
+
 //        Piece piece = board.getPiece(new Coordinates(File.B, 8));
 //        Set<Coordinates> availableMoveSquares = piece.getAvailableMoveSquares(board);
 //
-//        int a = 123;
 //
 //
         Game game = new Game(board);
         game.gameLoop();
     }
 }
+

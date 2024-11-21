@@ -21,7 +21,7 @@ public class Coordinates {
         int f = file.ordinal() + shift.fileShift;
         int r = rank + shift.rankShift;
         if ((f < 0) || (f > 7)) return false;
-        if ((r <= 1) || (r >= 8)) return false;
+        if ((r < 1) || (r > 8)) return false;
         return true;
     }
 
@@ -36,5 +36,10 @@ public class Coordinates {
     @Override
     public int hashCode() {
         return Objects.hash(file, rank);
+    }
+
+    @Override
+    public String toString() {
+        return file + String.valueOf(rank);
     }
 }

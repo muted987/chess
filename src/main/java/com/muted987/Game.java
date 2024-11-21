@@ -32,7 +32,7 @@ public class Game {
             //A1B1
             Piece piece = board.getPiece(sourceCoordinates);
             Set<Coordinates> avalableMoveSquares = piece.getAvailableMoveSquares(board);
-
+            renderer.render(board, piece);
             Coordinates targetCoordinates = InputCoordinates.inputAvailableSquare(avalableMoveSquares);
             //make move
             board.movePiece(sourceCoordinates, targetCoordinates);
