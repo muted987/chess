@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        String boardFen = "4b3/8/8/n3R2p/8/8/8/4N2r w - - 0 1";
+        String boardFen = "8/1q3B2/8/b2Q3B/8/1p6/2N3R1/8 w - - 0 1";
         Board board = (new BoardFactory()).fromFEN(boardFen);
 
 
