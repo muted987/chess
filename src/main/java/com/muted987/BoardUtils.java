@@ -20,23 +20,25 @@ public class BoardUtils {
         return result;
     }
 
-    public static List<Coordinates> getRowsCoordinatesBetween(Coordinates source, Coordinates target) {
+    public static List<Coordinates> getVerticalBetweenCoordinates(Coordinates source, Coordinates target) {
         List<Coordinates> result = new ArrayList<>();
-        int fileShift = Integer.compare(target.file.ordinal(), source.file.ordinal());
-        int rankShift = Integer.compare(target.rank, source.rank);
-        for (
-                int fileIndex = fileShift == 0 ? fileShift : fileShift + source.file.ordinal(),
-                rank = rankShift == 0 ? rankShift : rankShift + source.rank;
-                fileIndex != target.file.ordinal() + 1 && rank != target.rank;
-                rank += rankShift, fileIndex += fileShift
-        ){
-            result.add(new Coordinates(File.values()[fileIndex], rank));
+        int rankShift = source.rank < target.rank ? 1 : -1;
+        for (int rank = source.rank + rankShift; rank != target.rank; rank += rankShift) {
+            result.add(new Coordinates(source.file, rank));
+        }
+        return result;
+    }
+    public static List<Coordinates> getHorizontalBetweenCoordinates(Coordinates source, Coordinates target) {
+        List<Coordinates> result = new ArrayList<>();
+        int fileShift = source.file.ordinal() < target.file.ordinal() ? 1 : -1;
+        for (int fileIndex = fileShift + source.file.ordinal(); fileIndex != target.file.ordinal(); fileIndex += fileShift) {
+            result.add(new Coordinates(File.values()[fileIndex], source.rank));
         }
         return result;
     }
 
     public static void main(String[] args) {
-        List<Coordinates> list = getRowsCoordinatesBetween(new Coordinates(File.E, 5), new Coordinates(File.E, 1));
+        List<Coordinates> list = getVerticalBetweenCoordinates(new Coordinates(File.E, 4), new Coordinates(File.E, 2));
         System.out.println("list = " + list);
     }
 }
