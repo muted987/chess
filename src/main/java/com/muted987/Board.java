@@ -2,7 +2,10 @@ package main.java.com.muted987;
 
 import main.java.com.muted987.piece.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 public class Board {
     HashMap<Coordinates, Piece> pieces = new HashMap<>();
@@ -59,5 +62,27 @@ public class Board {
 
     public Piece getPiece(Coordinates coordinates){
         return pieces.get(coordinates);
+    }
+
+    public List<Piece> getPiecesByColor(Color color) {
+        List<Piece> result = new ArrayList<>();
+        for (Piece piece : pieces.values()) {
+            if (piece.color == color) {
+                result.add(piece);
+            }
+        }
+        return result;
+    }
+
+    public boolean isSquareUnderAttackByColor(Coordinates coordinates, Color color) {
+        List<Piece> pieces = getPiecesByColor(color);
+        for (Piece piece : pieces) {
+            Set<Coordinates> attackedSquares = piece.getAttackedSquares(this);
+
+            if (attackedSquares.contains(coordinates)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -2,5 +2,9 @@ package main.java.com.muted987;
 
 public enum Color {
     WHITE,
-    BLACK
+    BLACK;
+
+    public Color opposite() {
+        return this == WHITE ? BLACK : WHITE;
+    }
 }
